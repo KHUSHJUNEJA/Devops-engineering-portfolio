@@ -1,0 +1,33 @@
+# Secrets
+.env
+*.env
+*.pem
+*.key
+credentials
+credentials.json
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Kubernetes secrets
+*.secret.yaml
