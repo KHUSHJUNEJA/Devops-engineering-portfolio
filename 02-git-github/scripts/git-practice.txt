@@ -1,0 +1,5 @@
+Git is a distributed version control system.
+Git tracks changes to files.
+Git is commonly used with GitHub
+Git branches allow developers to work on different versions of a project.
+Git history allows developers to track changes over time.
