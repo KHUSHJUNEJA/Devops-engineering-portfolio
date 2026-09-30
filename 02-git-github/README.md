@@ -29,3 +29,17 @@ DevOps and software development workflows.
 
 ```bash
 git status
+
+git log
+
+git log --online
+
+git add .
+
+git commit -m "commit message"
+
+git push
+
+
+```text
+
