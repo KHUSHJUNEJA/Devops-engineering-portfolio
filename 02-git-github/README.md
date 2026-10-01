@@ -43,3 +43,11 @@ git push
 
 ```text
 
+## Pull Request Workflow
+
+1. Create a feature branch.
+2. Make and test changes.
+3. Commit the changes.
+4. Push the branch to GitHub.
+5. Open a Pull Request.
+6. Review and merge the changes.
