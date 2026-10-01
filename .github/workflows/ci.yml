@@ -1,0 +1,82 @@
+# ============================================================
+# PORTFOLIO CI PIPELINE
+# ============================================================
+#
+# Purpose:
+#   Automatically validate the repository whenever changes
+#   are pushed to main or a Pull Request targets main.
+#
+# ============================================================
+
+name: Portfolio CI
+
+# ------------------------------------------------------------
+# WHEN SHOULD THIS WORKFLOW RUN?
+# ------------------------------------------------------------
+
+on:
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+# ------------------------------------------------------------
+# JOBS
+# ------------------------------------------------------------
+
+jobs:
+
+  # Job name
+  basic-check:
+
+    # GitHub provides a temporary Ubuntu machine
+    # to execute this job.
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # ------------------------------------------------------
+      # STEP 1 — DOWNLOAD REPOSITORY
+      # ------------------------------------------------------
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ------------------------------------------------------
+      # STEP 2 — CHECK PORTFOLIO STRUCTURE
+      # ------------------------------------------------------
+
+      - name: Check repository structure
+        run: |
+          echo "Running repository checks..."
+
+          test -d 01-linux
+          test -d 02-git-github
+          test -d 03-docker
+          test -d 04-kubernetes
+          test -d 05-jenkins
+          test -f .gitignore
+          test -f README.md
+
+          echo "Repository structure check passed."
+
+      # ------------------------------------------------------
+      # STEP 3 — VALIDATE BASH SCRIPTS
+      # ------------------------------------------------------
+
+      - name: Validate Bash scripts
+        run: |
+          echo "Checking Bash scripts..."
+
+          for script in 01-linux/scripts/*.sh
+          do
+            echo "Checking: $script"
+            bash -n "$script"
+          done
+
+          echo "Bash syntax checks passed."
+
+# ============================================================
+# END OF WORKFLOW
+# ============================================================
