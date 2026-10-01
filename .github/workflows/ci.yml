@@ -53,9 +53,6 @@ jobs:
 
           test -d 01-linux
           test -d 02-git-github
-          test -d 03-docker
-          test -d 04-kubernetes
-          test -d 05-jenkins
           test -f .gitignore
           test -f README.md
 
