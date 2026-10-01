@@ -74,6 +74,19 @@ jobs:
 
           echo "Bash syntax checks passed."
 
+      # ------------------------------------------------------
+      # STEP 4 — Check Linux Documentation for PR practice
+      # ------------------------------------------------------
+
+      - name: Check Linux documentation
+        run: |
+          echo "Checking Linux documentation..."
+
+          test -f 01-linux/README.md
+
+          echo "Linux documentation check passed."
+
+
 # ============================================================
 # END OF WORKFLOW
 # ============================================================
