@@ -1,0 +1,2 @@
+ Git branches allow developers to work on features independently.
+Changes can be tested on a branch before merging them into main.
