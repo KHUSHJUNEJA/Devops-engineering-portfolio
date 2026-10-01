@@ -39,3 +39,13 @@ system monitoring, and Bash automation exercises.
 
 Build practical Linux administration and automation skills required
 for DevOps and SRE roles.
+
+## Automation Scripts
+
+The Linux section includes Bash scripts for common administration and monitoring tasks:
+
+- `system-info.sh` — displays system information.
+- `disk-usage.sh` — reports filesystem and directory disk usage.
+- `memory-check.sh` — reports memory usage and top memory-consuming processes.
+- `backup.sh` — creates compressed backups of the Documents directory.
+- `service-check.sh` — checks the status of one or multiple Linux services.
