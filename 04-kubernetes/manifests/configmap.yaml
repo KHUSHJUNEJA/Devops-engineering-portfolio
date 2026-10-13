@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: django-api-config
+  namespace: devops-api
+
+data:
+  DJANGO_ALLOWED_HOSTS: "192.168.49.2,localhost,127.0.0.1,*"
+  APP_ENV: "development"
+  APP_NAME: "Kubernetes Django API"

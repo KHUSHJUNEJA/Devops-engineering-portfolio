@@ -32,3 +32,17 @@ Thumbs.db
 
 # Kubernetes secrets
 *.secret.yaml
+
+
+# Kubernetes project local artifacts
+**/.venv/
+**/db.sqlite3
+**/*.sqlite3
+**/*.swp
+minikube-linux-amd64
+
+# Keep the self-healing project local for now
+/11-projects/
+
+# Never commit the Kubernetes Secret containing credentials
+/04-kubernetes/manifests/secret.yaml

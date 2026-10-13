@@ -1,0 +1,37 @@
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: django-api-migrate
+  namespace: devops-api
+spec:
+  backoffLimit: 3
+  template:
+    metadata:
+      labels:
+        app: django-api-migration
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrate
+          image: kubernetes-django-api:1.4
+          imagePullPolicy: IfNotPresent
+          command:
+            - python
+            - manage.py
+            - migrate
+          env:
+            - name: DATABASE_PATH
+              value: /data/db.sqlite3
+          envFrom:
+            - configMapRef:
+                name: django-api-config
+            - secretRef:
+                name: django-api-secret
+          volumeMounts:
+            - name: django-api-storage
+              mountPath: /data
+      volumes:
+        - name: django-api-storage
+          persistentVolumeClaim:
+            claimName: django-api-data

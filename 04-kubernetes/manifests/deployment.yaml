@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: django-api
+  namespace: devops-api
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: django-api
+
+  template:
+    metadata:
+      labels:
+        app: django-api
+
+    spec:
+      containers:
+        - name: django-api
+          image: kubernetes-django-api:1.4
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: DATABASE_PATH
+              value: /data/db.sqlite3
+          envFrom:
+            - configMapRef:
+                name: django-api-config
+            - secretRef:
+                name: django-api-secret
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "250m"
+              memory: "128Mi"
+
+          livenessProbe:
+            httpGet:
+              path: /health/
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /ready/
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          volumeMounts:
+            - name: django-api-storage
+              mountPath: /data
+
+      volumes:
+        - name: django-api-storage
+          persistentVolumeClaim:
+            claimName: django-api-data
